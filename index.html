@@ -3,9 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>ETCH-A-SKETCH</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="./script.js"></script>
   </head>
-  <body></body>
+  <body>
+    <header>
+      <h1 class="header">ETCH-A-SKETCH</h1>
+    </header>
+    <main class="main">
+      <div class="settings">
+        <input
+          id="colorPicker"
+          type="color"
+          value="#333333"
+          title="color-picker"
+        />
+        <button id="colorBtn" type="button">Color mode</button>
+        <button id="rainbowBtn" type="button">Rainbow mode</button>
+        <button id="eraserBtn" type="button">Eraser</button>
+        <button id="clear" type="button">Clear</button>
+        <div class="slider-container">
+          <div id="sizeValue" class="size-value">2 x 2</div>
+          <input
+            id="sizeSlider"
+            type="range"
+            value="2"
+            min="1"
+            max="64"
+            title="size-slider"
+          />
+        </div>
+      </div>
+      <div id="canvas" class="canvas"></div>
+    </main>
+    <div class="footer"></div>
+    <script src="./script.js"></script>
+  </body>
 </html>
