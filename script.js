@@ -34,7 +34,33 @@ clearBtn.addEventListener("click", () => {
 // slider functionality
 const sizeValue = document.getElementById("size-value");
 const sizeSlider = document.getElementById("size-slider");
+const gridCells = document.querySelectorAll(".grid-cell");
 
 sizeSlider.addEventListener("input", () => {
-  sizeValue.innerHTML = `${sizeSlider.value} x ${sizeSlider.value}`;
+  const cellSizeValue = sizeSlider.value;
+  const cellSize = 500 / cellSizeValue;
+
+  sizeValue.innerHTML = `${cellSizeValue} x ${cellSizeValue}`; //dynamically updates slider value
+  createGrid(cellSizeValue);
+
+  // set width and height of each cell according to cellSize and convert to px
+  gridCells.forEach((cell) => {
+    cell.style.width = `${cellSize}px`;
+    cell.style.height = `${cellSize}px`;
+  });
 });
+
+// grid generation
+function createGrid(size) {
+  canvas.innerHTML = "";
+
+  // loop to create grid cells
+  for (i = 0; i < size * size; i++) {
+    const div = document.createElement("div");
+    div.classList.add("grid-cell");
+    canvas.appendChild(div);
+  }
+
+  document.documentElement.style.setProperty("--grid-columns", size);
+  document.documentElement.style.setProperty("--grid-rows", size);
+}

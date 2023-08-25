@@ -51,11 +51,6 @@ button {
   border-radius: 10px;
 }
 
-/* button.active {
-  background-color: var(--primary-dark);
-  color: var(--primary-light);
-} */
-
 button:hover,
 input[type="color"]:hover {
   transform: scale(1.05);
@@ -88,4 +83,15 @@ input[type="color"] {
   background-color: var(--secondary-light);
   width: 500px;
   height: 500px;
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  grid-template-rows: repeat(var(--grid-rows), 1fr);
+}
+
+.grid-cell {
+  background-color: white;
+  border: 1px solid black;
+}
+
+.grid-cell:hover {
+  background-color: black;
 }
