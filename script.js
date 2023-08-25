@@ -34,6 +34,7 @@ clearBtn.addEventListener("click", () => {
 // slider functionality
 const sizeValue = document.getElementById("size-value");
 const sizeSlider = document.getElementById("size-slider");
+//select all elements with class of grid-cell
 const gridCells = document.querySelectorAll(".grid-cell");
 
 sizeSlider.addEventListener("input", () => {
