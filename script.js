@@ -55,7 +55,7 @@ sizeSlider.addEventListener("input", () => {
 function createGrid(size) {
   canvas.innerHTML = "";
 
-  // loop to create grid cells
+  // loop to create cells in the grid
   for (i = 0; i < size * size; i++) {
     const div = document.createElement("div");
     div.classList.add("grid-cell");
