@@ -89,7 +89,6 @@ input[type="color"] {
 
 .grid-cell {
   background-color: white;
-  border: 1px solid black;
 }
 
 .grid-cell:hover {
