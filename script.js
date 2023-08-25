@@ -1,11 +1,9 @@
 // color picker functionality
 const colorPicker = document.getElementById("color-picker");
+let colorChosen = colorPicker.value;
 const canvas = document.getElementById("canvas");
 
-colorPicker.addEventListener("input", () => {
-  const colorChosen = colorPicker.value;
-  canvas.style.backgroundColor = colorChosen;
-});
+colorPicker.addEventListener("input", () => {});
 
 // color functionality
 const colorBtn = document.getElementById("color-btn");
