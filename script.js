@@ -13,37 +13,37 @@ colorPicker.addEventListener("input", () => {
 //   colorBtn.style.backgroundColor = currentColor;
 // };
 
-//rainbow functionality
+// //rainbow functionality
 
-const rainbowBtn = document.getElementById("rainbow-btn");
-let isRainbowMode = false;
-rainbowBtn.addEventListener("click", () => {
-  isRainbowMode = !isRainbowMode;
-  if (isRainbowMode) {
-    rainbowBtn.style.backgroundColor = "#6544A2";
-  } else {
-    rainbowBtn.style.backgroundColor = "";
-  }
-});
+// const rainbowBtn = document.getElementById("rainbow-btn");
+// let isRainbowMode = false;
+// rainbowBtn.addEventListener("click", () => {
+//   isRainbowMode = !isRainbowMode;
+//   if (isRainbowMode) {
+//     rainbowBtn.style.backgroundColor = "#6544A2";
+//   } else {
+//     rainbowBtn.style.backgroundColor = "";
+//   }
+// });
 
-gridCells.forEach((cell) => {
-  cell.addEventListener("mouseover", () => {
-    if (isRainbowMode) {
-      rainbowBtn.style.backgroundColor = "#6544A2";
-      cell.style.backgroundColor = randomRGB();
-    } else {
-      rainbowBtn.style.backgroundColor = "";
-      cell.style.backgroundColor = "";
-    }
-  });
-});
+// gridCells.forEach((cell) => {
+//   cell.addEventListener("mouseover", () => {
+//     if (isRainbowMode) {
+//       rainbowBtn.style.backgroundColor = "#6544A2";
+//       cell.style.backgroundColor = randomRGB();
+//     } else {
+//       rainbowBtn.style.backgroundColor = "";
+//       cell.style.backgroundColor = "";
+//     }
+//   });
+// });
 
-function randomRGB() {
-  const red = Math.floor(Math.random() * 256);
-  const green = Math.floor(Math.random() * 256);
-  const blue = Math.floor(Math.random() * 256);
-  return `rgb(${red},${green},${blue})`;
-}
+// function randomRGB() {
+//   const red = Math.floor(Math.random() * 256);
+//   const green = Math.floor(Math.random() * 256);
+//   const blue = Math.floor(Math.random() * 256);
+//   return `rgb(${red},${green},${blue})`;
+// }
 
 //eraser functionality
 const eraserBtn = document.getElementById("eraser-btn");
