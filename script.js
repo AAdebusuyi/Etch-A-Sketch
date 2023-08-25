@@ -1,9 +1,11 @@
 // color picker functionality
 const colorPicker = document.getElementById("color-picker");
-let colorChosen = colorPicker.value;
+let currentColor = colorPicker.value;
 const canvas = document.getElementById("canvas");
 
-colorPicker.addEventListener("input", () => {});
+colorPicker.addEventListener("input", () => {
+  currentColor = colorPicker.value;
+});
 
 // color functionality
 const colorBtn = document.getElementById("color-btn");
@@ -58,6 +60,9 @@ function createGrid(size) {
   for (i = 0; i < size * size; i++) {
     const div = document.createElement("div");
     div.classList.add("grid-cell");
+    div.addEventListener("mouseenter", () => {
+      div.style.backgroundColor = currentColor;
+    });
     canvas.appendChild(div);
   }
 
