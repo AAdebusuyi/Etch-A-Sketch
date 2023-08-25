@@ -38,7 +38,7 @@ const gridCells = document.querySelectorAll(".grid-cell");
 
 sizeSlider.addEventListener("input", () => {
   const cellSizeValue = sizeSlider.value;
-  const cellSize = 500 / cellSizeValue;
+  const cellSize = 500 / cellSizeValue; // to get appropriate cell sizes since width and height are defined as 500px
 
   sizeValue.innerHTML = `${cellSizeValue} x ${cellSizeValue}`; //dynamically updates slider value
   createGrid(cellSizeValue);
