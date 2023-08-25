@@ -40,7 +40,8 @@ sizeSlider.addEventListener("input", () => {
   const cellSizeValue = sizeSlider.value;
   const cellSize = 500 / cellSizeValue; // to get appropriate cell sizes since width and height are defined as 500px
 
-  sizeValue.innerHTML = `${cellSizeValue} x ${cellSizeValue}`; //dynamically updates slider value
+  //dynamically updates slider value
+  sizeValue.innerHTML = `${cellSizeValue} x ${cellSizeValue}`;
   createGrid(cellSizeValue);
 
   // set width and height of each cell according to cellSize and convert to px
