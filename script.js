@@ -1,101 +1,3 @@
-// // color picker functionality
-// const colorPicker = document.getElementById("color-picker");
-// let currentColor = colorPicker.value;
-// const canvas = document.getElementById("canvas");
-
-// colorPicker.addEventListener("input", () => {
-//   currentColor = colorPicker.value;
-// });
-
-// // color functionality
-// const colorBtn = document.getElementById("color-btn");
-// colorBtn.onclick = (e) => {
-//   colorBtn.style.backgroundColor = currentColor;
-// };
-
-// // rainbow functionality
-// const rainbowBtn = document.getElementById("rainbow-btn");
-// let isRainbowMode = false;
-
-// rainbowBtn.addEventListener("click", () => {
-//   isRainbowMode = !isRainbowMode;
-//   if (isRainbowMode) {
-//     rainbowBtn.style.backgroundColor = "#6544A2";
-//   } else {
-//     rainbowBtn.style.backgroundColor = "";
-//   }
-// });
-
-// const gridCells = document.querySelectorAll(".grid-cell");
-
-// gridCells.forEach((cell) => {
-//   cell.addEventListener("mouseover", () => {
-//     if (isRainbowMode) {
-//       rainbowBtn.style.backgroundColor = "#6544A2";
-//       cell.style.backgroundColor = randomRGB();
-//     } else {
-//       rainbowBtn.style.backgroundColor = "";
-//       cell.style.backgroundColor = "";
-//     }
-//   });
-// });
-
-// function randomRGB() {
-//   const red = Math.floor(Math.random() * 256);
-//   const green = Math.floor(Math.random() * 256);
-//   const blue = Math.floor(Math.random() * 256);
-//   const rgbValue = `rgb(${red},${green},${blue})`;
-//   return rgbValue;
-// }
-
-// //eraser functionality
-// const eraserBtn = document.getElementById("eraser-btn");
-// eraserBtn.onclick = (e) => {};
-
-// // clear functionality
-// const clearBtn = document.getElementById("clear");
-// clearBtn.addEventListener("click", () => {
-//   location.reload();
-// });
-
-// // slider functionality
-// const sizeValue = document.getElementById("size-value");
-// const sizeSlider = document.getElementById("size-slider");
-// //select all elements with class of grid-cell
-
-// sizeSlider.addEventListener("input", () => {
-//   const cellSizeValue = sizeSlider.value;
-//   const cellSize = 500 / cellSizeValue; // to get appropriate cell sizes since width and height are defined as 500px
-
-//   //dynamically updates slider value
-//   sizeValue.innerHTML = `${cellSizeValue} x ${cellSizeValue}`;
-//   createGrid(cellSizeValue);
-
-//   // set width and height of each cell according to cellSize and convert to px
-//   gridCells.forEach((cell) => {
-//     cell.style.width = `${cellSize}px`;
-//     cell.style.height = `${cellSize}px`;
-//   });
-// });
-
-// // grid generation
-// function createGrid(size) {
-//   canvas.innerHTML = "";
-
-//   // loop to create cells in the grid
-//   for (i = 0; i < size * size; i++) {
-//     const div = document.createElement("div");
-//     div.classList.add("grid-cell");
-//     div.addEventListener("mouseenter", () => {
-//       div.style.backgroundColor = currentColor;
-//     });
-//     canvas.appendChild(div);
-//   }
-
-//   document.documentElement.style.setProperty("--grid-columns", size);
-//   document.documentElement.style.setProperty("--grid-rows", size);
-// }
-
 // default values of the application
 const DEFAULT_COLOR = "#cccccc";
 const DEFAULT_MODE = "color";
@@ -108,15 +10,60 @@ let currentSize = 16;
 
 //functions that update the app's current state based on 'new' arguments
 function setCurrentColor(newColor) {
-  let currentColor = newColor;
+  currentColor = newColor;
 }
 
 function setCurrentMode(newMode) {
-  let currentMode = newMode;
+  activateButton(newMode);
+  currentMode = newMode;
 }
 
 function setCurrentSize(newSize) {
-  let currentSize = newSize;
+  currentSize = newSize;
+}
+
+// Micheal's activateButton
+// function activateButton(newMode) {
+//   // Remove the "active" class from the button corresponding to the current mode
+//   if (currentMode === "rainbow") {
+//     rainbowBtn.classList.remove("active");
+//   } else if (currentMode === "color") {
+//     colorBtn.classList.remove("active");
+//   } else if (currentMode === "eraser") {
+//     eraserBtn.classList.remove("active");
+//   }
+
+//   // Add the "active" class to the button corresponding to the new mode
+//   if (newMode === "rainbow") {
+//     rainbowBtn.classList.add("active");
+//   } else if (newMode === "color") {
+//     colorBtn.classList.add("active");
+//   } else if (newMode === "eraser") {
+//     eraserBtn.classList.add("active");
+//   }
+// }
+
+//my own activateButton
+function activateButton(newMode) {
+  // Remove the "active" class from buttons that are not in the current mode
+  if (currentMode !== "rainbow") {
+    rainbowBtn.classList.remove("active");
+  }
+  if (currentMode !== "color") {
+    colorBtn.classList.remove("active");
+  }
+  if (currentMode !== "eraser") {
+    eraserBtn.classList.remove("active");
+  }
+
+  // Add the "active" class to the button corresponding to the new mode
+  if (newMode === "rainbow") {
+    rainbowBtn.classList.add("active");
+  } else if (newMode === "color") {
+    colorBtn.classList.add("active");
+  } else if (newMode === "eraser") {
+    eraserBtn.classList.add("active");
+  }
 }
 
 function reloadCanvas() {
@@ -128,14 +75,35 @@ function clearCanvas() {
   canvas.innerHTML = "";
 }
 
-//where i stopped....
 function setUpCanvas(size) {
   canvas.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
   canvas.style.gridTemplateRows = `repeat(${size}, 1fr)`;
+
+  for (let i = 0; i < size * size; i++) {
+    const div = document.createElement("div");
+    div.classList.add("canvas-cell");
+    div.addEventListener("mousedown", changeColor);
+    div.addEventListener("mouseover", changeColor);
+    canvas.appendChild(div);
+  }
 }
 
+function changeColor(e) {
+  if (e.type === "mouseover" && !mouseDown) return;
+  if (currentMode === "rainbow") {
+    const randomR = Math.floor(Math.random() * 256);
+    const randomG = Math.floor(Math.random() * 256);
+    const randomB = Math.floor(Math.random() * 256);
+    e.target.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`;
+  } else if (currentMode === "color") {
+    e.target.style.backgroundColor = currentColor;
+  } else if (currentMode === "eraser") {
+    e.target.style.backgroundColor = "#fefefe";
+  }
+}
 //dom selectors
 const colorPicker = document.getElementById("color-picker");
+const colorBtn = document.getElementById("color-btn");
 const rainbowBtn = document.getElementById("rainbow-btn");
 const eraserBtn = document.getElementById("eraser-btn");
 const clearBtn = document.getElementById("clear-btn");
@@ -144,6 +112,22 @@ const slider = document.getElementById("slider");
 const canvas = document.getElementById("canvas");
 
 colorPicker.oninput = (e) => setCurrentColor(e.target.value);
-rainbowBtn.onclick = () => setCurrentMode("color");
+colorBtn.onclick = () => setCurrentMode("color");
+rainbowBtn.onclick = () => setCurrentMode("rainbow");
 eraserBtn.onclick = () => setCurrentMode("eraser");
 clearBtn.onclick = () => reloadCanvas();
+slider.onmousemove = (e) => updateSizeValue(e.target.value);
+slider.onchange = (e) => changeSize(e.target.value);
+
+let mouseDown = false;
+document.body.onmousedown = () => (mouseDown = true);
+document.body.onmouseup = () => (mouseDown = false);
+
+function changeSize(value) {
+  updateSizeValue(value);
+  reloadCanvas();
+}
+
+function updateSizeValue(value) {
+  sizeValue.innerHTML = `${value} x ${value}`;
+}
