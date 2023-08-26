@@ -22,27 +22,6 @@ function setCurrentSize(newSize) {
   currentSize = newSize;
 }
 
-// Micheal's activateButton
-// function activateButton(newMode) {
-//   // Remove the "active" class from the button corresponding to the current mode
-//   if (currentMode === "rainbow") {
-//     rainbowBtn.classList.remove("active");
-//   } else if (currentMode === "color") {
-//     colorBtn.classList.remove("active");
-//   } else if (currentMode === "eraser") {
-//     eraserBtn.classList.remove("active");
-//   }
-
-//   // Add the "active" class to the button corresponding to the new mode
-//   if (newMode === "rainbow") {
-//     rainbowBtn.classList.add("active");
-//   } else if (newMode === "color") {
-//     colorBtn.classList.add("active");
-//   } else if (newMode === "eraser") {
-//     eraserBtn.classList.add("active");
-//   }
-// }
-
 //my own activateButton
 function activateButton(newMode) {
   // Remove the "active" class from buttons that are not in the current mode
@@ -119,6 +98,7 @@ clearBtn.onclick = () => reloadCanvas();
 slider.onmousemove = (e) => updateSizeValue(e.target.value);
 slider.onchange = (e) => changeSize(e.target.value);
 
+// checks globally if the mouse is actually being held down
 let mouseDown = false;
 document.body.onmousedown = () => (mouseDown = true);
 document.body.onmouseup = () => (mouseDown = false);
