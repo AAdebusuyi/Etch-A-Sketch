@@ -6,7 +6,7 @@ const DEFAULT_SIZE = 16;
 // variables that store the current state of the application.
 let currentColor = DEFAULT_COLOR;
 let currentMode = DEFAULT_MODE;
-let currentSize = 16;
+let currentSize = DEFAULT_SIZE;
 
 //functions that update the app's current state based on 'new' arguments
 function setCurrentColor(newColor) {
@@ -100,8 +100,8 @@ colorBtn.onclick = () => setCurrentMode("color");
 rainbowBtn.onclick = () => setCurrentMode("rainbow");
 eraserBtn.onclick = () => setCurrentMode("eraser");
 clearBtn.onclick = () => reloadCanvas();
-slider.onmousemove = (e) => updateSizeValue(e.target.value);
-slider.onchange = (e) => changeSize(e.target.value);
+slider.oninput = (e) => updateSizeValue(e.target.value);
+slider.oninput = (e) => changeSize(e.target.value);
 
 // checks globally if the mouse is actually being held down
 let mouseDown = false;
@@ -109,6 +109,7 @@ document.body.onmousedown = () => (mouseDown = true);
 document.body.onmouseup = () => (mouseDown = false);
 
 function changeSize(value) {
+  setCurrentSize(value); // Update the currentSize variable
   updateSizeValue(value);
   reloadCanvas();
 }
