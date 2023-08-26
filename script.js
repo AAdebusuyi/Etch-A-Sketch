@@ -22,7 +22,6 @@ function setCurrentSize(newSize) {
   currentSize = newSize;
 }
 
-//my own activateButton
 function activateButton(newMode) {
   // Remove the "active" class from buttons that are not in the current mode
   if (currentMode !== "rainbow") {
@@ -38,10 +37,16 @@ function activateButton(newMode) {
   // Add the "active" class to the button corresponding to the new mode
   if (newMode === "rainbow") {
     rainbowBtn.classList.add("active");
+    eraserBtn.classList.remove("active");
+    colorBtn.classList.remove("active");
   } else if (newMode === "color") {
     colorBtn.classList.add("active");
+    rainbowBtn.classList.remove("active");
+    eraserBtn.classList.remove("active");
   } else if (newMode === "eraser") {
     eraserBtn.classList.add("active");
+    colorBtn.classList.remove("active");
+    rainbowBtn.classList.remove("active");
   }
 }
 
