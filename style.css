@@ -51,6 +51,11 @@ button {
   border-radius: 10px;
 }
 
+button.active {
+  background-color: var(--primary-dark);
+  color: var(--primary-light);
+}
+
 button:hover,
 input[type="color"]:hover {
   transform: scale(1.05);
@@ -61,6 +66,24 @@ input[type="color"] {
   height: 35px;
   border-radius: 50%;
   cursor: pointer;
+  border: none;
+}
+
+/* hmm */
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+button,
+input[type="color"] {
+  transition: transform 0.1s ease-in-out;
+}
+
+input[type="color"]::-webkit-color-swatch {
+  border: none;
+  border-radius: 50px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .settings {
@@ -83,14 +106,14 @@ input[type="color"] {
   background-color: var(--secondary-light);
   width: 500px;
   height: 500px;
-  grid-template-columns: repeat(var(--grid-columns), 1fr);
-  grid-template-rows: repeat(var(--grid-rows), 1fr);
+  /* grid-template-columns: repeat(var(--grid-columns), 1fr);
+  grid-template-rows: repeat(var(--grid-rows), 1fr); */
 }
 
-.grid-cell {
+.canvas-cell {
   background-color: white;
 }
 
-.grid-cell:hover {
+.canvas-cell:hover {
   background-color: black;
 }
